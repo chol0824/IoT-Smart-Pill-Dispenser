@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <TextView
+        android:gravity="center_horizontal"
+        android:id="@+id/tv_item_gridview"
+        android:layout_width="wrap_content"
+        android:layout_height="26dp"
+        android:textSize="15dp"
+        />
+    <ImageView
+        android:id="@+id/PILL"
+        android:layout_marginTop="2dp"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_gravity="center"
+        />
+
+</LinearLayout>

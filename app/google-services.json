@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "797744006565",
+    "project_id": "pill-dispenser-d4bec",
+    "storage_bucket": "pill-dispenser-d4bec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:797744006565:android:5429d11cc96175fcd1144c",
+        "android_client_info": {
+          "package_name": "com.hansung.android.medicine"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "797744006565-rmcttnelpl1fhepnpjkqbae0ltiqtfft.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXxr827Lfcn1TY4hGEzPld3m5dT5_KjJY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "797744006565-rmcttnelpl1fhepnpjkqbae0ltiqtfft.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
