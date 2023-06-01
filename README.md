@@ -1,5 +1,6 @@
 # 💊 IoT-Smart-Pill-Dispenser 💊
-<img src="https://github.com/chol0824/IoT-Smart-Pill-Dispenser/assets/74773561/b4bedd59-ecbd-40fb-80e3-f160fac0136b" width="300" height="300"/>
+<img src="https://github.com/chol0824/IoT-Smart-Pill-Dispenser/assets/74773561/b4bedd59-ecbd-40fb-80e3-f160fac0136b" width="350" height="300"/>
+<img src="https://github.com/chol0824/IoT-Smart-Pill-Dispenser/assets/74773561/9895f032-aeb9-459e-bcbf-15db8f3fa51a" width="200" height="300"/>
 <h2>Service Introduction</h2>
 <h3>" 원하는 시간에 약을 드롭하며 앱을 통해 사용자 맞춤형 서비스를 제공하는 IoT 서비스 "</h3>
 <h4>유사 프로젝트와의 차별성</h4>
@@ -46,6 +47,10 @@
 <code>Raspberry Pi for HARDWARE</code>
 
 <h2>Result_Detail</h2>
+<img src="https://github.com/chol0824/IoT-Smart-Pill-Dispenser/assets/74773561/800c1056-546d-4034-b144-fa407c5e9268" width="500" height="300"/>
+<img src="https://github.com/chol0824/IoT-Smart-Pill-Dispenser/assets/74773561/7dbf1def-d861-470b-98b9-25d0dfd95ec5" width="500" height="300"/>
+<img src="https://github.com/chol0824/IoT-Smart-Pill-Dispenser/assets/74773561/44da9f26-d2c6-4b1d-9348-95f147d07bf7" width="500" height="300"/>
+<img src="https://github.com/chol0824/IoT-Smart-Pill-Dispenser/assets/74773561/e29412d2-9358-463a-9288-c3c84fdb91e6" width="500" height="300"/>
 <h3>Report</h3>
 <li>https://docs.google.com/viewer?url=https://github.com/chol0824/IoT-Smart-Pill-Dispenser/files/11625788/_._._1871270_.pdf?raw=True</li>
 <h3>Presentation</h3>
