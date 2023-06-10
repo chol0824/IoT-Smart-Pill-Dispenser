@@ -39,7 +39,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity { //메인 화면
 
     private TextView textView_Date;
 
@@ -61,12 +61,12 @@ public class MainActivity extends AppCompatActivity {
     String [] n;
     int count;
 
-    String morning_after = " 08:30:00";
-    String morning_before = " 07:30:00";
-    String lunch_after = " 13:30:00";
-    String lunch_before = " 12:00:00";
-    String dinner_after = " 19:30:00";
-    String dinner_before = " 18:00:00";
+    String morning_after = " 08:30:00"; //아침 식후
+    String morning_before = " 07:30:00"; //아침 식전
+    String lunch_after = " 13:30:00"; //점심 식후
+    String lunch_before = " 12:00:00"; //점심 식전
+    String dinner_after = " 19:30:00"; //저녁 식후
+    String dinner_before = " 18:00:00"; //저녁 식전
 
 
     @Override
@@ -77,11 +77,11 @@ public class MainActivity extends AppCompatActivity {
 
         if (!calledAlready)
         {
-            FirebaseDatabase.getInstance().setPersistenceEnabled(true); // 다른 인스턴스보다 먼저 실행되어야 한다.
+            FirebaseDatabase.getInstance().setPersistenceEnabled(true); // 다른 인스턴스보다 먼저 실행
             calledAlready = true;
         }
 
-        listView = (ListView) findViewById(R.id.user_list);
+        listView = (ListView) findViewById(R.id.user_list); //사용자 목록
 
 
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, fileList){
@@ -114,24 +114,24 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        final Button btn_regis = (Button) findViewById(R.id.register);
+        final Button btn_regis = (Button) findViewById(R.id.register); // 사용자 등록하기 버튼
         btn_regis.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view) { // 버튼 클릭 시 등록하러 가기 ( RegisActivity 화면 실행)
                 Intent intent = new Intent(getApplicationContext(), RegisActivity.class);
                 startActivity(intent);
             }
         });
 
 
-
+        // Firebase에서 사용자 가져오기
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference databaseRef = database.getReference("users");
 
 
 
 
-        // Read from the database
+        // 데이터베이스에서 읽어오기
         databaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -166,14 +166,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //사용자 이름 클릭 시 해당 사용자의 등록 정보 조회하는 (UserActivity) 실행
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             // 콜백매개변수는 순서대로 어댑터뷰, 해당 아이템의 뷰, 클릭한 순번, 항목의 아이디
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
                 Intent intent = new Intent(MainActivity.this, UserActivity.class);
-                intent.putExtra("name", fileList.get(i).toString());
-                startActivity(intent);
+                intent.putExtra("name", fileList.get(i).toString()); //사용자 이름 보내기
+                startActivity(intent); // 액티비티 실행
             }
            /* public void onItemDoubleClick(AdapterView<?> adapterView, View view, int i, long l){
 

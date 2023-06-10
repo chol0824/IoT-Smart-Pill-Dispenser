@@ -25,18 +25,18 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserActivity extends AppCompatActivity {
+public class UserActivity extends AppCompatActivity { //사용자 정보 화면
 
     ListView listView;
     List fileList = new ArrayList<>();
     ArrayAdapter<String> adapter;
 
 
-    TextView user_name;
-    TextView user_height;
-    TextView user_weight;
-    TextView user_birth;
-    TextView user_gender;
+    TextView user_name; // 이름
+    TextView user_height; // 키
+    TextView user_weight; // 몸무게
+    TextView user_birth; // 생년월일
+    TextView user_gender; // 성별
     TextView user;
     String motor;
 
@@ -56,7 +56,7 @@ public class UserActivity extends AppCompatActivity {
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
 
     FirebaseDatabase database1 = FirebaseDatabase.getInstance();
-    DatabaseReference databaseRef1 = database1.getReference("Druglist");
+    DatabaseReference databaseRef1 = database1.getReference("Druglist"); //약 리스트 불러오기
 
     FirebaseDatabase database2 = FirebaseDatabase.getInstance();
     DatabaseReference databaseRef2 = database2.getReference("pill");
@@ -112,7 +112,7 @@ public class UserActivity extends AppCompatActivity {
 
 
 
-        // Read from the database
+        // Read from the database 데이터베이스에서 읽어오기
         databaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -128,15 +128,14 @@ public class UserActivity extends AppCompatActivity {
                             String gender = fileSnapshot.child("gender").getValue(String.class);
                             String pill = fileSnapshot.child("pill").getValue(String.class);
                             //          Log.i("TAG: value is ", name);
+
+                            //읽어온 정보로 띄우기
                             user.setText(username + "님의 사용자 정보");
                             user_name.setText(username);
                             user_birth.setText(age);
                             user_height.setText(height);
                             user_weight.setText(weight);
                             user_gender.setText(gender);
-
-
-                            // [오메가3, 큐텐, 유산균, 센트룸]
 
                             if (fileSnapshot.child("pill").exists()) {
 
@@ -173,7 +172,7 @@ public class UserActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             // 콜백매개변수는 순서대로 어댑터뷰, 해당 아이템의 뷰, 클릭한 순번, 항목의 아이디
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) { //약 복용 리스트에서 특정 약 이름 클릭 시
                 DatabaseReference a = databaseRef2.child(username);
                 pill = n[i].trim();
                 a.addValueEventListener(new ValueEventListener() {
@@ -187,10 +186,10 @@ public class UserActivity extends AppCompatActivity {
                             System.out.println("Pill_name:"+Pill_name);
                             Pill_name = Pill_name.trim();
 
-                            if(pill.equals(Pill_name)) {
+                            if(pill.equals(Pill_name)) { //데이터베이스에 일치하는 약 이름 확인 시
                                 day = fileSnapshot.child("day").getValue(String.class);
                                 motor = fileSnapshot.child("motor").getValue(String.class);
-                                Intent intent = new Intent(UserActivity.this, PillActivity.class);
+                                Intent intent = new Intent(UserActivity.this, PillActivity.class); //해당 약 복용 정보 화면으로 이동
                                 intent.putExtra("day", day);
                                 intent.putExtra("motor", motor);
                                 intent.putExtra("name",user_name.getText().toString());

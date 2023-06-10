@@ -1,11 +1,11 @@
 package com.hansung.android.medicine;
 
-public class FirebaseTimeSet {
-    public String pillname;
-    public String day;
-    public String daytime;
-    public String time;
-    public String name;
+public class FirebaseTimeSet { //약 복용 시간 설정 시 Firebase에 올릴 데이터 선언
+    public String pillname; //약
+    public String day; // 복용일
+    public String daytime; //복용시간대
+    public String time; //식전 식후
+    public String name; // 이름
 
 
     public FirebaseTimeSet(){

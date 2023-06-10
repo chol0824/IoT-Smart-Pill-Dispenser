@@ -13,7 +13,7 @@ import android.os.Build;
 import androidx.core.app.NotificationCompat;
 
 
-public class AlarmRecevier extends BroadcastReceiver {
+public class AlarmRecevier extends BroadcastReceiver { // 약 구매 권장 알림 구현을 위해 AlarmRecevier
 
     public AlarmRecevier(){ }
 
@@ -30,7 +30,7 @@ public class AlarmRecevier extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-
+        // 시스템에서 AlarmManager 받아옴
         AlarmManager am = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
 
         builder = null;
@@ -47,12 +47,12 @@ public class AlarmRecevier extends BroadcastReceiver {
 
 
 
-        //알림창 클릭 시 activity 화면 부름
+        //알림창 클릭 시 작동할 activity 화면 설정하기
         Intent intent2 = new Intent(context, IntroActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(context,101,intent2, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        String name =intent.getStringExtra("user_name");
-        String pill = intent.getStringExtra("Pill_title");
+        String name =intent.getStringExtra("user_name"); // 이름
+        String pill = intent.getStringExtra("Pill_title"); //약
 
         //알림창 제목
         builder.setContentTitle(name+" 님 !"+"["+pill+"] 약이 다 떨어져가요 ㅠ.ㅠ ");

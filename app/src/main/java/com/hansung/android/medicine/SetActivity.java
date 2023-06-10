@@ -29,7 +29,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
-public class SetActivity extends AppCompatActivity {
+public class SetActivity extends AppCompatActivity { //약 복용 세부 정보 등록할 화면
 
     private TextView textView_Date;
     private TimePickerDialog.OnTimeSetListener callbackMethod;

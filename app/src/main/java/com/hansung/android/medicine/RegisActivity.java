@@ -52,7 +52,7 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-public class RegisActivity extends AppCompatActivity {
+public class RegisActivity extends AppCompatActivity { //사용자 등록 화면
     private static final String TAG = RegisActivity.class.getName();
 
     // 카메라 불러오기 관련
@@ -75,27 +75,27 @@ public class RegisActivity extends AppCompatActivity {
     ListView listView;
     ArrayAdapter<String> adapter;
     ArrayList<String> listItem;
-    ArrayList<String> pills;
+    ArrayList<String> pills; //복용 중인 약 정보 채워넣을 리스트
 
-    EditText user_name;
-    EditText user_height;
-    EditText user_weight;
-    EditText user_birth;
+    EditText user_name; //사용자 이름
+    EditText user_height; // 키
+    EditText user_weight; // 몸무게
+    EditText user_birth; //생년월일
 
-    EditText user_pill;
-    Button add;
-    Button save_user;
+    EditText user_pill; //사용자가 복용중인 약
+    Button add; // 약 추가 버튼
+    Button save_user; //최종 등록 버튼
 
-    RadioButton male;
-    RadioButton female;
+    RadioButton male; //남성
+    RadioButton female; //여성
 
 
     Button upload_btn;
-    TextView btn_result;
+    TextView btn_result; //이미지 업로드 시 옆에 진행상태 (업로딩 성공,실패) 표시
 
     int count = 0;
-    String gender;
-    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    String gender; //성별
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance(); //데이터 저장할 Firebase
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
 
     @Override
@@ -137,19 +137,19 @@ public class RegisActivity extends AppCompatActivity {
         listItem = new ArrayList<String>();
         final ArrayList<String> arrayList = new ArrayList<String>();
 
-        add.setOnClickListener(new View.OnClickListener() {
+        add.setOnClickListener(new View.OnClickListener() { //약 추가 버튼 클릭 시
             @Override
             public void onClick(View v) {
 
                 if(user_pill.getText().toString().length()> 0) {
-                    listItem.add(user_pill.getText().toString());
+                    listItem.add(user_pill.getText().toString()); //약 이름을 리스트에 추가하기
                     adapter.notifyDataSetChanged();
                     user_pill.setText("");
                     count += 1;
 
                     Toast.makeText(RegisActivity.this, "추가 완료.", Toast.LENGTH_SHORT).show();
                 }else{
-                    Toast.makeText(getApplicationContext(),"약 이름을 입력해주세요.",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"약 이름을 입력해주세요.",Toast.LENGTH_SHORT).show(); //입력 안하고 추가 버튼 클릭 시
                 }
                 pills = listItem;
 
@@ -183,14 +183,12 @@ public class RegisActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             // 콜백매개변수는 순서대로 어댑터뷰, 해당 아이템의 뷰, 클릭한 순번, 항목의 아이디
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) { //약 복용 리스트에 특정 약 이름 클릭 시 약 복용 시간 설정 화면으로 이동
 
 
                 Toast.makeText(getApplicationContext(),listItem.get(i).toString() + "의 복용 시간을 설정합니다",Toast.LENGTH_SHORT).show();
-                //Intent intent = new Intent(getApplicationContext(), SetActivity.class);
-                //startActivity(intent);
                 Intent intent = new Intent(RegisActivity.this, SetActivity.class);
-                intent.putExtra("user_pill", listItem.get(i).toString());
+                intent.putExtra("user_pill", listItem.get(i).toString()); // 복용하는 약 명과 사용자 이름 이동 시 같이 보내기
                 intent.putExtra("user_name", user_name.getText().toString());
                 startActivity(intent);
             }
@@ -207,18 +205,16 @@ public class RegisActivity extends AppCompatActivity {
 
         save_user.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) { // 등록 버튼
 
 
                 if(user_name.getText().toString().length() > 0 && user_birth.getText().toString().length() > 0 && user_height.getText().toString().length() > 0
-                    && user_weight.getText().toString().length() > 0 && count > 0 ){
+                    && user_weight.getText().toString().length() > 0 && count > 0 ){//모든 정보를 제대로 다 입력 완료했다면
                     count++;
                     Toast.makeText(getApplicationContext(), user_name.getText().toString() +"님 프로필 등록 완료",Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(RegisActivity.this, MainActivity.class);
-                    //intent.putExtra("user_name", user_name.getText().toString());
-                    //intent.putExtra("user_birth", user_birth.getText().toString());
+                    Intent intent = new Intent(RegisActivity.this, MainActivity.class); //메인 화면으로 돌아가기
                     startActivity(intent);
-                }else{
+                }else{ //제대로 등록 안 된 정보가 있다면
                     Toast.makeText(getApplicationContext(), "사용자 정보를 모두 입력해주세요.",Toast.LENGTH_SHORT).show();
                 }
 
@@ -228,18 +224,11 @@ public class RegisActivity extends AppCompatActivity {
                 else{
                     gender = "여성";
                 }
+
+                //Firebase에 사용자 등록 정보 올리기
                 FirebasePostRegis regis = new FirebasePostRegis(user_birth.getText().toString(), gender,
                         user_height.getText().toString(),user_name.getText().toString(), user_weight.getText().toString(), pills.toString());
 
-
-                //    weight w = new weight(user_weight.getText().toString());
-
-                // 앞 child는 맨위꺼 그밑에 child가 밑으로 싸임 rgrg
-                // 하나쓰면 왜.... 여러개 user만드는거는 더 봐야할듯
-
-                //이렇게 하나써주면 setValue에있는 값들 +싹뜸
-
-               // we we = new we(user_weight.getText().toString());
                  databaseReference.child("users").child(user_name.getText().toString()).setValue(regis);
 
 
@@ -255,18 +244,13 @@ public class RegisActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // camera 사용 code 이고 result_ok일시 작동
+        // camera 사용 code 이고 RESULT_OK 일 시 작동
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
 
 
             // 찍은 사진 mPhotoFile을 bitmap으로 decodeFile
             Bitmap cameraphoto = BitmapFactory.decodeFile(mPhotoFile.getAbsolutePath());
-
-            // 찍은 사진 rotate
-            // Bitmap cameraRotated = rotateBitmap(cameraphoto, orientation);
-            // imageview 사진 뜨게함
-            //image.setImageBitmap(cameraRotated);
 
 
             // imageUri (찍은사진)이 있으면
@@ -288,12 +272,12 @@ public class RegisActivity extends AppCompatActivity {
                 storageRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     // coloud storage에 image 업로드 성공시
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) { //이미지 업로드 성공 시
                         Log.e("Firebase cloud storage", "Upload Success!");
                         btn_result.setText("이미지 업로드 성공");
                     }
                 })
-                        //실패시
+                        //실패 시
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
@@ -301,7 +285,7 @@ public class RegisActivity extends AppCompatActivity {
                                 btn_result.setText("이미지 업로드 실패");
                             }
                         })
-                        //진행중
+                        //진행 중
                         .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                             @Override
                             public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
@@ -309,7 +293,7 @@ public class RegisActivity extends AppCompatActivity {
                                 btn_result.setText("이미지 업로딩");
                             }
                         });
-            } else {
+            } else { //이미지 선택 안하고 시도할 시
                 Toast.makeText(getApplicationContext(), "파일을 먼저 선택하세요.", Toast.LENGTH_SHORT).show();
             }
         } else if (requestCode == REQUEST_IMAGE_PICK && resultCode == RESULT_OK) {
@@ -319,17 +303,11 @@ public class RegisActivity extends AppCompatActivity {
 
             filePath = data.getData();
 
-            // 사진의 절대 경로명
-        //    Uri mPhotoUri = Uri.parse(getRealPathFromURI(filePath));
-
-          //  ExifInterface exif = null;
-
             // inpuStream이라서 try / catch문 없애면 안됨
             try {
 
                 int batchNum = 0;
                 InputStream buf = getContentResolver().openInputStream(filePath);
-             //   Bitmap albumphoto = BitmapFactory.decodeStream(buf);
                 buf.close();
 
 
@@ -610,7 +588,7 @@ public class RegisActivity extends AppCompatActivity {
 
 
 
-    // 현재 날짜 시간 String 함수
+    // 현재 날짜 시간 불러오는 String 함수
     private String currentDateFormat() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HH_mm_ss");
         String currentTimeStamp = dateFormat.format(new Date());

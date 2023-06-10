@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-public class IntroActivity extends AppCompatActivity {
+public class IntroActivity extends AppCompatActivity { // 앱 실행 시 시작 화면
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

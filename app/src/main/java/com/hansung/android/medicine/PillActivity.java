@@ -38,13 +38,13 @@ import java.text.SimpleDateFormat;
 
 import static com.hansung.android.medicine.UserActivity.calledAlready;
 
-public class PillActivity extends AppCompatActivity {
+public class PillActivity extends AppCompatActivity { //약 복용 정보(복용 시간대, 섭취체크 등등) 화면
 
-    TextView user_name;
-    TextView user_birth;
+    TextView user_name; //사용자 이름
+    TextView user_birth; //사용자 생년월일
 
     FirebaseDatabase database1 = FirebaseDatabase.getInstance();
-    DatabaseReference databaseRef1 = database1.getReference("Druglist");
+    DatabaseReference databaseRef1 = database1.getReference("Druglist"); //사용자 복용 약 리스트
 
     FirebaseDatabase database2 = FirebaseDatabase.getInstance();
     DatabaseReference databaseRef2 = database2.getReference("pill");
@@ -94,7 +94,7 @@ public class PillActivity extends AppCompatActivity {
     /**
      * 캘린더 변수
      */
-    private Calendar mCal;
+    private Calendar mCal; //이번 달 섭취 체크에 띄울 달력
 
     private GridAdapter gridAdapter;
 
@@ -133,15 +133,7 @@ public class PillActivity extends AppCompatActivity {
 
         tvDate = (TextView)findViewById(R.id.tv_date);
         gridView = (GridView)findViewById(R.id.gridview);
-
-
-
-        //cal.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            //@Override
-            //public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                //Toast.makeText(PillActivity.this,""+year+"/"+(month+1)+"/" +dayOfMonth,Toast.LENGTH_SHORT).show();
-            //}
-        //});
+        
 
         databaseRef1.addValueEventListener(new ValueEventListener() {
             @Override
@@ -151,21 +143,18 @@ public class PillActivity extends AppCompatActivity {
 
                 for (DataSnapshot fileSnapshot : dataSnapshot.getChildren()) {
 
-                    User_pill1 = fileSnapshot.child("user-pill").getValue(String.class);
+                    User_pill1 = fileSnapshot.child("user-pill").getValue(String.class); //사용자가 복용하는 약
 
-
+                    //사용자가 복용하는 약 명과 일치할 시 해당 약과 함께 복용하면 안되는 약 리스트에 띄우기
                     if(User_pill.equals(User_pill1)) {
-                        String pill_no = fileSnapshot.child("pill-no").getValue(String.class);
-
+                        String pill_no = fileSnapshot.child("pill-no").getValue(String.class); 
 
                         String[] p = pill_no.split(",");
                         for (int i = 0; i < p.length; i++) {
-
                             listItem2.add(p[i]);
                         }
                         adapter2.notifyDataSetChanged();
                     }else {
-
                     }
                 }
                 adapter2.notifyDataSetChanged();
@@ -190,7 +179,6 @@ public class PillActivity extends AppCompatActivity {
                     Pill_name = fileSnapshot.child("pillname").getValue(String.class);
 
                     if(User_pill.equals(Pill_name)) {
-                        //String count_pill = fileSnapshot.child("count_pill").getValue(String.class);
                         String day = fileSnapshot.child("day").getValue(String.class);
                         String daytime = fileSnapshot.child("daytime").getValue(String.class);
                         String time = fileSnapshot.child("time").getValue(String.class);
@@ -212,8 +200,7 @@ public class PillActivity extends AppCompatActivity {
             }
         });
 
-
-
+        //복용 중인 약 리스트
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listItem){
 
             @Override
@@ -228,6 +215,7 @@ public class PillActivity extends AppCompatActivity {
         };
 
 
+        //함께 복용하면 안되는 약 빨간색으로 표시
         adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listItem2){
             @Override
 
@@ -276,15 +264,15 @@ public class PillActivity extends AppCompatActivity {
         gridAdapter = new GridAdapter(getApplicationContext(), dayList);
         gridView.setAdapter(gridAdapter);
 
-        listView.setAdapter(adapter);
+        listView.setAdapter(adapter); // 복용 중인 약 리스트
         adapter.notifyDataSetChanged();
 
-        listView2.setAdapter(adapter2);
+        listView2.setAdapter(adapter2); // 함께 복용하면 안되는 약 리스트
         adapter2.notifyDataSetChanged();
 
     }
 
-    private void setCalendarDate(int month) { //이게 실제로 날짜를 집어넣는
+    private void setCalendarDate(int month) { //실제로 날짜를 집어넣음
         mCal.set(Calendar.MONTH, month - 1);
 
         Intent intent = getIntent();
@@ -295,11 +283,10 @@ public class PillActivity extends AppCompatActivity {
             System.out.println("d:"+d[i]); // 여기서 확인 가능
         }
 
-        for (int i = 0; i < mCal.getActualMaximum(Calendar.DAY_OF_MONTH); i++) { //여기에 그 코드를 넣어야 하는 거 같은데
-            dayList.add("" + (i + 1));                                           //뭘 해도 원하는대로 안 나옴,,,,,
+        for (int i = 0; i < mCal.getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
+            dayList.add("" + (i + 1));
         }
     }
-
 
 
     /**
@@ -402,8 +389,6 @@ public class PillActivity extends AppCompatActivity {
             }
 
 
-
-
             //해당 날짜 텍스트 컬러,배경 변경
             mCal = Calendar.getInstance();
             //오늘 day 가져옴
@@ -419,17 +404,12 @@ public class PillActivity extends AppCompatActivity {
             return convertView;
         }
 
-
     }
 
     private class ViewHolder {
         TextView tvItemGridView;
         ImageView PILL;
     }
-
-
-
-
 }
 
 

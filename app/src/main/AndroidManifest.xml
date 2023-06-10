@@ -21,13 +21,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat">
 
+        <!-- 사용자 정보 화면 -->
         <activity android:name=".UserActivity"></activity>
+
+        <!-- 앱 실행 시 시작 화면 -->
         <activity
             android:name=".IntroActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -45,15 +47,22 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
+        <!-- 사용자 리스트 화면 -->
         <activity
             android:name=".MainActivity"
             android:windowSoftInputMode="adjustResize" />
+
+        <!-- 사용자 등록 화면 -->
         <activity
             android:name=".RegisActivity"
             android:windowSoftInputMode="adjustResize" />
+
+        <!-- 사용자 약 복용 정보 등록 화면 -->
         <activity
             android:name=".SetActivity"
             android:windowSoftInputMode="adjustResize" />
+
+        <!-- 사용자 약 복용 정보 화면 -->
         <activity
             android:name=".PillActivity"
             android:windowSoftInputMode="adjustResize" />

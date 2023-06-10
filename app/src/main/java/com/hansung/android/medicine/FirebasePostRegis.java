@@ -5,7 +5,7 @@ import com.google.firebase.database.Exclude;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FirebasePostRegis {
+public class FirebasePostRegis { //사용자 등록 시 Firebase에 올릴 데이터 선언
     public String name;
     public String gender;
     public String age;
@@ -20,12 +20,12 @@ public class FirebasePostRegis {
 
     public FirebasePostRegis(String age, String gender, String height, String name,
                              String weight, String pill) {
-        this.name = name;
-        this.height = height;
-        this.gender = gender;
-        this.age = age;
-        this.weight = weight;
-        this.pill = pill;
+        this.name = name; //이름
+        this.height = height; //키
+        this.gender = gender; //성별
+        this.age = age; //나이
+        this.weight = weight; //몸무게
+        this.pill = pill; //약
 
     }
 
