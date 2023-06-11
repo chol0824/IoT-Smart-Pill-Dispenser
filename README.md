@@ -47,6 +47,9 @@
 <code>Python deep learning for FACE RECOGNITION</code><br>
 <code>Raspberry Pi for HARDWARE</code>
 
+<h2>What I learned</h2>
+<img src="https://github.com/chol0824/IoT-Smart-Pill-Dispenser/assets/74773561/23e34da4-ba38-4b86-acda-cd7809f8343b"/>
+
 <h2>Result_Detail</h2>
 <h3>Report</h3><br>
 <li>https://docs.google.com/viewer?url=https://github.com/chol0824/IoT-Smart-Pill-Dispenser/files/11625788/_._._1871270_.pdf?raw=True</li><br>
@@ -67,5 +70,4 @@
 <img src="https://github.com/chol0824/IoT-Smart-Pill-Dispenser/assets/74773561/7dbf1def-d861-470b-98b9-25d0dfd95ec5" width="400" height="200"/>
 <img src="https://github.com/chol0824/IoT-Smart-Pill-Dispenser/assets/74773561/44da9f26-d2c6-4b1d-9348-95f147d07bf7" width="400" height="200"/>
 <img src="https://github.com/chol0824/IoT-Smart-Pill-Dispenser/assets/74773561/e29412d2-9358-463a-9288-c3c84fdb91e6" width="400" height="200"/>
-
 
